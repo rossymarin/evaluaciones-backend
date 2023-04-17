@@ -2,7 +2,7 @@ package com.evaluaciones.usuarioRol.domain;
 
 import com.evaluaciones.rol.domain.Rol;
 import com.evaluaciones.usuario.domain.Usuario;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 @Data

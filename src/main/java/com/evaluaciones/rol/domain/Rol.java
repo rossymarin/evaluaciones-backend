@@ -1,14 +1,16 @@
 package com.evaluaciones.rol.domain;
 
 import com.evaluaciones.usuarioRol.domain.UsuarioRol;
-import jakarta.persistence.*;
-import lombok.Builder;
+import javax.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "roles")
 public class Rol {
