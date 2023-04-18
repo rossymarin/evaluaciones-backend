@@ -17,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @CrossOrigin("*")
 @Slf4j
@@ -40,7 +42,7 @@ public class LoginController {
             return ResponseEntity.ok(new JwtResponse(token));
         }catch (Exception exception){
             log.info(exception.getMessage());
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -52,5 +54,10 @@ public class LoginController {
         }catch (BadCredentialsException e){
             throw  new Exception("Credenciales invalidas " + e.getMessage());
         }
+    }
+
+    @GetMapping("/actual-user")
+    public Usuario getUsuarioActual(Principal principal) {
+        return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
 }
