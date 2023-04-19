@@ -1,6 +1,6 @@
 package com.evaluaciones.security.infrastructure.config;
 
-import com.evaluaciones.security.domain.domain.core.UserDetailsServiceImpl;
+import com.evaluaciones.security.domain.core.UserDetailsServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

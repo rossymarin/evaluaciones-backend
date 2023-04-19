@@ -1,4 +1,4 @@
-package com.evaluaciones.security.domain.domain.core;
+package com.evaluaciones.security.domain.core;
 
 import com.evaluaciones.usuario.domain.Usuario;
 import com.evaluaciones.usuario.domain.outgoing.UsuarioRepository;

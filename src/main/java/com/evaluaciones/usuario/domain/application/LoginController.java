@@ -1,10 +1,11 @@
 package com.evaluaciones.usuario.domain.application;
 
-import com.evaluaciones.security.domain.domain.core.UserDetailsServiceImpl;
+import com.evaluaciones.security.domain.core.UserDetailsServiceImpl;
 import com.evaluaciones.security.domain.incoming.model.JwtRequest;
 import com.evaluaciones.security.domain.outgoing.model.JwtResponse;
 import com.evaluaciones.security.infrastructure.config.JwtUtils;
 import com.evaluaciones.usuario.domain.Usuario;
+import com.evaluaciones.usuario.domain.incoming.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -40,7 +40,7 @@ public class LoginController {
             UserDetails userDetails =  this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
             String token = this.jwtUtils.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(token));
-        }catch (Exception exception){
+        }catch (UserNotFoundException exception){
             log.info(exception.getMessage());
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
